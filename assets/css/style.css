@@ -6,50 +6,366 @@ html body {
 
 header {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border: solid rgb(0, 47, 255) 4px;
-    position: relative;
+    justify-content: center; /* Centre le logo */
+    align-items: center;
+    padding: 20px 20px 0px 20px;
+    position: relative; /* Important pour le positionnement des enfants */
+    min-height: 100px;
 }
 
-img {
-    margin: 0 auto;
-    max-height: 300px;
-    max-width: 300px;
+header img {
+    width: 20em;
+    height: 20em;
 }
 
-header .connection {
+.button {
     position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 15em;
-    height: 3em;
-    font-size: 15px;
-    font-weight: bold;
-    border: solid rgb(255, 255, 255) 2px;
-    background-color: rgb(36, 35, 35);
-    color: white;
+    top: 20px;
+    right: 20px;
+    display: flex;       /* Aligne les enfants sur une ligne */
+    gap: 15px;           /* Crée l'espace entre les deux boutons */
+    align-items: center; /* Les aligne verticalement entre eux */
+}
+
+.connection, .panier {
+    position: static;    /* Annule l'absolute individuel */
+    padding: 8px 15px;   /* Un peu de confort */
     cursor: pointer;
 }
 
-nav {
-    border :  solid rgb(0, 47, 255) 4px;
-    border-top: none;
+
+.burger-toggle {
+    position: fixed; /* Pour qu'il soit toujours accessible */
+    left: 20px;
+    top: 25px;
+    z-index: 1001; /* Plus haut que la sidebar */
 }
 
-nav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.5em;
-    margin: 0;
+.burger-toggle span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out; /* Animation fluide */
+    cursor: pointer;
 }
-nav li {
-    list-style-type: none;
+
+/* On retire la marge de la dernière barre */
+.burger-toggle span:last-child { margin-bottom: 0; }
+
+/* Transformations quand la classe .active est ajoutée */
+.burger-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+.burger-toggle.active span:nth-child(2) {
+    opacity: 0; /* On cache la barre du milieu */
+}
+.burger-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* --- LE VOILE / OVERLAY --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Noir transparent */
+    backdrop-filter: blur(5px);    /* L'effet de flou */
+    z-index: 998;                  /* Sous la sidebar (999) mais sur le site */
+    display: none;                 /* Caché par défaut */
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Style du menu déroulant */
+.nav-links {
+    display: flex; /* On remplace 'none' par 'flex' */
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Reste fixe à l'écran */
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    border-right: 1px solid white;
+    padding-top: 80px; 
+    z-index: 999;
+    
+    /* Cache la barre hors de l'écran par défaut */
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links.active {
+    transform: translateX(0); /* La sidebar glisse vers la droite */
+}
+
+.nav-links a {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s ease-out;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #7eb9e5;
+}
+
+/* État quand le menu est ouvert */
+.nav-links.active a {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Décalage pour chaque lien (effet cascade) */
+.nav-links.active a:nth-child(1) { transition-delay: 0.1s; }
+.nav-links.active a:nth-child(2) { transition-delay: 0.2s; }
+.nav-links.active a:nth-child(3) { transition-delay: 0.3s; }
+.nav-links.active a:nth-child(4) { transition-delay: 0.4s; }
+
+.nav-links a:hover {
+    background-color: #05347a;
+}
+
+.container{
+    border: 2px solid white;
+    margin: 2em;
+}
+
+p {
     color: white;
     font-size: 2em;
-    background-color:rgb(36, 35, 35);
-    border-radius: 10%;
-    padding: 0.5em;
+    text-align: center ;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    font-size: 1em;
+}
+
+h2{
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    margin: 2em;
+}
+
+.photo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5em;
+}
+
+#photo1{
+    width: 18em;
+    height: 18em;
+}
+
+#photo2{
+    width: 18em;
+    height: 18em;
+}
+
+#photo3{
+    width: 18em;
+}
+
+#photo4{
+    height: 18em;
+    width: 36em;
+}
+
+h3{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+#formulaire1{
+    width: 90%;           /* Largeur sur mobile */
+    max-width: 50em;     /* Largeur maximale sur grand écran */
+    margin: 40px auto;    /* 40px en haut/bas, et 'auto' pour centrer horizontalement */
+    display: block;       /* S'assure que le formulaire se comporte comme un bloc */
+    /* Optionnel : un peu de style pour le voir */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box; /* S'applique à tous les éléments du formulaire */
+}
+
+label{
+    color: white;
+    padding-right: 2em;
+}
+
+#descriptif {
+    width: 90%;       /* Maintenant, 100% veut dire "bord à bord" pile poil */
+    display: block;    /* Évite les comportements étranges d'alignement */
+    padding: 2em;
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+
+#devform {
+    display: block;         /* Permet d'utiliser les marges auto */
+    margin: 20px auto;      /* 20px en haut, auto sur les côtés pour centrer */
+    padding: 10px 25px;
     cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    /* On enlève width: 100% et on donne une largeur fixe ou flexible */
+    flex: 0 1 48%;         /* Prend environ la moitié de l'écran (moins le gap) */
+    min-width: 450px;      /* Sécurité : en dessous de cette taille, elle passera dessous */
+    height: 250px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+/* On s'assure que le parent autorise le passage à la ligne si besoin */
+.config {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch; /* Mieux que center pour que les cartes aient la même hauteur */
+    flex-wrap: wrap;       /* ESSENTIEL pour éviter que les cartes ne s'écrasent */
+}
+.card img {
+    width: 40%;             /* L'image prend 40% de la largeur de la carte */
+    height: 100%;
+    object-fit: contain;      /* Remplis l'espace sans déformer l'image */
+}
+
+.card-body {
+    width: 60%;             /* Le texte prend le reste (60%) */
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Aligne titre, texte et bouton verticalement */
+    justify-content: space-between; /* Espace les éléments entre le haut et le bas */
+    align-items: center;
+}
+
+.card-titre {
+    margin: 0;
+    color: #333;
+}
+
+.card-text {
+    color: black;
+}
+
+.card-button {
+    align-self: center; /* Aligne le bouton à gauche (début de ligne) */
+    padding: 10px 20px;
+    cursor: pointer;
+    width: auto;
+}
+
+/* On cible la boîte de dialogue */
+.modal-technique {
+    background-color: white; /* Fond blanc pour la fenêtre */
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* On force tous les textes à l'intérieur de la modale en noir */
+.modal-technique h2, 
+.modal-technique p, 
+.modal-technique li,
+.modal-technique div {
+    color: #000000; /* Noir pur */
+    text-align: center; /* Souvent plus joli pour une fiche technique */
+}
+
+/* Style pour le bouton fermer à l'intérieur de la modale */
+.btn-close {
+    margin-top: 20px;
+    padding: 8px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.configomatic-container {
+    margin: 2em;
+    padding-bottom: 2em;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+}
+
+.config-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Aligne tout le monde verticalement au centre */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espace entre les selects d'une même colonne */
+}
+
+/* Style des Selects */
+select {
+    width: 200px;
+    padding: 8px;
+    background-color: #d1d1d1; /* Gris clair comme sur l'image */
+    border: none;
+    font-family: sans-serif;
+    cursor: pointer;
+    appearance: none; /* Retire le style par défaut du navigateur */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M0 3l5 5 5-5z"/></svg>'); /* Petite flèche */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+/* Style de la checkbox */
+.checkbox-container {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style du bouton Envoyer */
+.btn-envoyer {
+    background-color: #d1d1d1;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-envoyer:hover {
+    background-color: white;
+}
+
+.perso {
+    margin: 2em;
+    border: 2px solid white;
 }

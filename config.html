@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Alexandre.L</title>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <header>
+        <img src="/assets/img/logo 1.svg" alt="logo">
+        
+        <div class="button">
+            <button class="panier" type="button">Panier</button>
+            <button class="connection" type="submit">Connection / Inscritption</button>
+        </div>
+
+        <nav>
+            <div class="burger-toggle" id="burger-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="/acueuil.html">Accueil</a>
+                <a href="/dev_web.html">Dev Web</a>
+                <a href="/config.html">Config</a>
+                <a href="">Dépannage</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Configuration PC</h2>
+
+        <div class="config">
+            <div class="card">
+                <img src="/assets/img/pc-gamer-500-euros.png" alt="pc 500€">
+                <div class="card-body">
+                    <h3 class="card-titre">PC Gaming 500€</h3>
+                    <p class="card-text">INFOMAX | Ryzen 5 - RTX 4060</p>
+
+                    <button class="btn-open" data-target="modal1">En savoir plus</button>
+                </div>
+                
+                <dialog id="modal1" class="modal-technique">
+                    <div class="modal-content">
+                        <h2>Fiche Technique</h2>
+                        <p>Ryzen 5 / RTX 4060 / 16Go RAM</p>
+                        <button class="btn-close">Fermer</button>
+                    </div>
+                </dialog>
+
+            </div> <div class="card">
+                <img src="/assets/img/819cOVjBRRL._AC_UF1000,1000_QL80_.jpg" alt="pc 500€">
+                <div class="card-body">
+                    <h3 class="card-titre">PC Gaming 1000€</h3>
+                    <p class="card-text">VIBOX SG-X-243 PC Gamer</p>
+                    <button class="btn-open" data-target="modal2">En savoir plus</button>
+                </div>
+            </div>
+
+            <dialog id="modal2" class="modal-technique">
+                <div class="modal-content">
+                <h2>Fiche Technique</h2>
+                <p>Ryzen 5 / RTX 4060 / 16Go RAM</p>
+                <button class="btn-close">Fermer</button>
+                </div>
+            </dialog>
+        </div>
+
+        <div class="configomatic-container">
+            <h3>Configomatic</h3>
+            <form class="config-grid">
+                <div class="column">
+                    <select name="cpu"><option>CPU</option></select>
+                    <select name="gpu"><option>GPU</option></select>
+                    <select name="mobo"><option>Carte mère</option></select>
+                    <select name="ram"><option>RAM</option></select>
+                </div>
+
+                <div class="column">
+                    <select name="cooler"><option>Refroidissement</option></select>
+                    <select name="psu"><option>Alimentation</option></select>
+                    <select name="case"><option>Boitier</option></select>
+                    <select name="ssd"><option>Stockage</option></select>
+                </div>
+
+                <div class="column center-content">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="montage"> Montage
+                    </label>
+                </div>
+
+                <div class="column center-content">
+                    <button type="button" class="btn-envoyer">Envoyer</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="perso">
+            <h3> Configuration personnalisée</h3>
+             <form action="" method="GET" id="formulaire1">
+                    <div>
+                        <label for="text">Descriptif</label>
+                        <textarea id="descriptif" name="user_descriptif_perso" rows="5"></textarea>
+                    </div>
+            <button id="devform" type="submit">Envoyer</button>
+        </div>
+    </main>
+    <footer>
+        <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+        </div>
+    </footer>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
